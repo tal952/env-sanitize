@@ -1,4 +1,4 @@
-import env, { EnvSanitizeError } from "../src";
+import env from "../src";
 import { generateKeyAndValue } from "./utils/generateKeyAndValue";
 
 describe("assert", () => {
@@ -18,11 +18,11 @@ describe("assert", () => {
           (v) => `${v} is not foo.`
         )
       )
-    ).toThrow(new EnvSanitizeError(`${value} is not foo.`));
+    ).toThrow(new Error(`${value} is not foo.`));
 
     expect(() =>
       env(key, (x) => x.assert((v) => v === "foo", `not foo.`))
-    ).toThrow(new EnvSanitizeError(`not foo.`));
+    ).toThrow(new Error(`not foo.`));
 
     expect(() =>
       env(key, (x) =>
@@ -31,6 +31,6 @@ describe("assert", () => {
           (v, k) => `Key:'${k}' not foo.`
         )
       )
-    ).toThrow(new EnvSanitizeError(`Key:'${key}' not foo.`));
+    ).toThrow(new Error(`Key:'${key}' not foo.`));
   });
 });

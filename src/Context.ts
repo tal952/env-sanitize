@@ -1,5 +1,3 @@
-import { EnvSanitizeError } from ".";
-
 export default class Context<V> {
   value: V;
   key: string;
@@ -20,7 +18,7 @@ export default class Context<V> {
   ) {
     if (assertFunc(this.value)) return this;
 
-    throw new EnvSanitizeError(
+    throw new Error(
       message instanceof Function ? message(this.value, this.key) : message
     );
   }

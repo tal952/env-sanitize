@@ -1,10 +1,10 @@
-import env, { EnvSanitizeError } from "../src";
+import env from "../src";
 import { generateKeyAndValue } from "./utils/generateKeyAndValue";
 
 describe("required", () => {
   it("EnvDoesNotExists_Throw", () => {
     const [key] = generateKeyAndValue();
-    expect(() => env(key)).toThrow(EnvSanitizeError);
+    expect(() => env(key)).toThrow();
   });
 
   it("EnvDoesExists", () => {
@@ -25,6 +25,6 @@ describe("required", () => {
 
   it("EnvDoesNotExistsAndDefaultFunctionGetParameter_Throw", () => {
     const [key, value] = generateKeyAndValue();
-    expect(() => env(key, (x) => x.asBoolean())).toThrow(EnvSanitizeError);
+    expect(() => env(key, (x) => x.asBoolean())).toThrow();
   });
 });

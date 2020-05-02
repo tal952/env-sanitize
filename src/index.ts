@@ -1,6 +1,4 @@
 import Context from "./Context";
-import EnvSanitizeError from "./EnvSanitizeError";
-export { default as EnvSanitizeError } from "./EnvSanitizeError";
 
 function env(key: string): string;
 function env<R>(
@@ -22,7 +20,7 @@ function env(key: string, sanitizer?, defaultValue?) {
 
   if (initialValue == undefined) {
     if (defaultValue == undefined)
-      throw new EnvSanitizeError(`Key: ${key} does not exists.`);
+      throw new Error(`Key: ${key} does not exists.`);
 
     return defaultValue instanceof Function ? defaultValue() : defaultValue;
   }
