@@ -1,0 +1,33 @@
+{
+  "name": "env-sanitize",
+  "version": "1.0.0",
+  "description": "Validate, sanitize, and parse environment variables.",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.m.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "test": "jest",
+    "coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tal952/env-sanitize.git"
+  },
+  "author": "Tal Cherniak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tal952/env-sanitize/issues"
+  },
+  "homepage": "https://github.com/tal952/env-sanitize#readme",
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "jest": "^25.5.1",
+    "microbundle": "^0.11.0",
+    "ts-jest": "^25.4.0",
+    "typescript": "^3.8.3"
+  }
+}
