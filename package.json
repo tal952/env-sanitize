@@ -1,6 +1,6 @@
 {
   "name": "env-sanitize",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Validate, sanitize, and parse environment variables.",
   "source": "src/index.ts",
   "main": "dist/index.js",
