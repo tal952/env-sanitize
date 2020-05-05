@@ -35,6 +35,22 @@ const env_key = env("STRING_KEY", (x) =>
 
 # Sanitizers
 
+- [required](#required)
+- [with default](#with-default)
+- [asInt](#asInt)
+- [asIntInclusiveBetween](#asIntInclusiveBetween)
+- [asFloat](#asFloat)
+- [asFloatInclusiveBetween](#asFloatInclusiveBetween)
+- [asBoolean](#asBoolean)
+- [asEnum](#asEnum)
+- [asPort](#asPort)
+- [asJson](#asJson)
+- [asJsonArray](#asJsonArray)
+- [asLowerCase](#asLowerCase)
+- [asUpperCase](#asUpperCase)
+- [assert](#assert)
+- [transform](#transform)
+
 ## required
 
 ```javascript
