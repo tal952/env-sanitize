@@ -111,12 +111,6 @@ const env_key = env("INT_KEY", (x) => x.asPort());
 const env_key = env("JSON_KEY", (x) => x.asJson());
 ```
 
-## adJsonArray
-
-```javascript
-const env_key = env("JSON_ARRAY_KEY", (x) => x.asJsonArray());
-```
-
 ## asJsonArray
 
 ```javascript
