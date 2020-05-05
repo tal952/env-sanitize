@@ -20,17 +20,28 @@ yarn add env-sanitize
 import env from "env-sanitize";
 // or const env = require('env-sanitize');
 
-const env_region = env("AWS_REGION"); // If not exists, throw.
-const env_server_url = env("SERVER_URL", "localhost"); // use default if not exists.
-const env_max_connections = env("MAX_CONNECTIONS", (x) => x.asInt()); // get MAX_CONNECTIONS env, and transform it to int. throw if its not a number or not exists.
-const env_port = env("PORT", (x) => x.asPort(), 4000); // get PORT env, and transform it to number in port range. throw if its out of the range. return default if not exists.
+// If not exists, throw.
+const env_region = env("AWS_REGION"); 
 
+// use default if not exists.
+const env_server_url = env("SERVER_URL", "localhost"); 
+
+// get MAX_CONNECTIONS env, and transform it to int. 
+// throw if its not a number or not exists.
+const env_max_connections = env("MAX_CONNECTIONS", (x) => x.asInt()); 
+
+// get PORT env, and transform it to number in port range. 
+// throw if its out of the range. 
+// return default if not exists.
+const env_port = env("PORT", (x) => x.asPort(), 4000);
+
+// We can chain the Sanitizers.
 const env_key = env("STRING_KEY", (x) =>
   x
     .asLowerCase()
     .asEnum(["one", "two"])
     .transform((v) => (v === "one" ? 1 : 2))
-); // We can chain the Sanitizers.
+);
 ```
 
 # Sanitizers
