@@ -21,17 +21,17 @@ import env from "env-sanitize";
 // or const env = require('env-sanitize');
 
 // If not exists, throw.
-const env_region = env("AWS_REGION"); 
+const env_region = env("AWS_REGION");
 
 // use default if not exists.
-const env_server_url = env("SERVER_URL", "localhost"); 
+const env_server_url = env("SERVER_URL", "localhost");
 
-// get MAX_CONNECTIONS env, and transform it to int. 
+// get MAX_CONNECTIONS env, and transform it to int.
 // throw if its not a number or not exists.
-const env_max_connections = env("MAX_CONNECTIONS", (x) => x.asInt()); 
+const env_max_connections = env("MAX_CONNECTIONS", (x) => x.asInt());
 
-// get PORT env, and transform it to number in port range. 
-// throw if its out of the range. 
+// get PORT env, and transform it to number in port range.
+// throw if its out of the range.
 // return default if not exists.
 const env_port = env("PORT", (x) => x.asPort(), 4000);
 
@@ -48,17 +48,17 @@ const env_key = env("STRING_KEY", (x) =>
 
 - [required](#required)
 - [with default](#with-default)
-- [asInt](#asInt)
-- [asIntInclusiveBetween](#asIntInclusiveBetween)
-- [asFloat](#asFloat)
-- [asFloatInclusiveBetween](#asFloatInclusiveBetween)
-- [asBoolean](#asBoolean)
-- [asEnum](#asEnum)
-- [asPort](#asPort)
-- [asJson](#asJson)
-- [asJsonArray](#asJsonArray)
-- [asLowerCase](#asLowerCase)
-- [asUpperCase](#asUpperCase)
+- [asInt](#asint)
+- [asIntInclusiveBetween](#asintinclusivebetween)
+- [asFloat](#asfloat)
+- [asFloatInclusiveBetween](#asfloatinclusivebetween)
+- [asBoolean](#asboolean)
+- [asEnum](#asenum)
+- [asPort](#asport)
+- [asJson](#asjson)
+- [asJsonArray](#asjsonarray)
+- [asLowerCase](#aslowercase)
+- [asUpperCase](#asuppercase)
 - [assert](#assert)
 - [transform](#transform)
 
