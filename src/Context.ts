@@ -1,11 +1,5 @@
 export default class Context<V> {
-  value: V;
-  key: string;
-
-  constructor(key: string, value: V) {
-    this.key = key;
-    this.value = value;
-  }
+  constructor(private key: string, private value: V) {}
 
   assert(
     assertFunc: (value: V) => boolean,
@@ -24,7 +18,9 @@ export default class Context<V> {
   }
 
   transform<R>(getValue: (value: V) => R) {
-    return new Context(this.key, getValue(this.value));
+    const _this = (this as unknown) as Context<R>;
+    _this.value = getValue(this.value);
+    return _this;
   }
 
   asEnum(validValues: V[]) {

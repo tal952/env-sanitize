@@ -18,6 +18,11 @@ describe("required", () => {
     expect(env(key, value)).toBe(value);
   });
 
+  it("EnvDoesNotExistsAndDefaultIsNull_ReturnDefault", () => {
+    const [key] = generateKeyAndValue();
+    expect(env(key, null)).toBe(null);
+  });
+
   it("EnvDoesNotExists_ReturnDefaultFunction", () => {
     const [key, value] = generateKeyAndValue();
     expect(env(key, () => value)).toBe(value);

@@ -11,15 +11,16 @@ function env(key: string, sanitizer?, defaultValue?) {
   const initialValue = process.env[key];
 
   if (
-    defaultValue == undefined &&
+    defaultValue === undefined &&
+    sanitizer !== undefined &&
     !(sanitizer instanceof Function && sanitizer.length === 1)
   ) {
     defaultValue = sanitizer;
     sanitizer = undefined;
   }
 
-  if (initialValue == undefined) {
-    if (defaultValue == undefined)
+  if (initialValue === undefined) {
+    if (defaultValue === undefined)
       throw new Error(`Key: ${key} does not exists.`);
 
     return defaultValue instanceof Function ? defaultValue() : defaultValue;
