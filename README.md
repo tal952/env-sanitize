@@ -1,6 +1,9 @@
+# env-sanitize 🧹
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![NPM version](https://img.shields.io/npm/v/env-sanitize.svg)](https://www.npmjs.com/package/env-sanitize)   
 Sanitization and verification of environment variables with typescript support.
 
-# Install
+## Installation
 
 ### npm
 
@@ -14,7 +17,7 @@ npm install env-sanitize
 yarn add env-sanitize
 ```
 
-# Example
+## Example
 
 ```javascript
 import env from "env-sanitize";
@@ -44,7 +47,7 @@ const env_key = env("STRING_KEY", (x) =>
 );
 ```
 
-# Sanitizers
+## Sanitizers
 
 - [required](#required)
 - [with default](#with-default)
@@ -62,85 +65,85 @@ const env_key = env("STRING_KEY", (x) =>
 - [assert](#assert)
 - [transform](#transform)
 
-## required
+### required
 
 ```javascript
 const env_required = env("REQUIRED_KEY");
 ```
 
-## with default
+### with default
 
 ```javascript
 const env_key = env("OPTIONAL_KEY", "default");
 ```
 
-## asInt
+### asInt
 
 ```javascript
 const env_key = env("INT_KEY", (x) => x.asInt());
 ```
 
-## asIntInclusiveBetween
+### asIntInclusiveBetween
 
 ```javascript
 const env_key = env("INT_KEY", (x) => x.asIntInclusiveBetween(1, 5));
 ```
 
-## asFloat
+### asFloat
 
 ```javascript
 const env_key = env("FLOAT_KEY", (x) => x.asFloat());
 ```
 
-## asFloatInclusiveBetween
+### asFloatInclusiveBetween
 
 ```javascript
 const env_key = env("FLOAT_KEY", (x) => x.asFloatInclusiveBetween(1.4, 9.8));
 ```
 
-## asBoolean
+### asBoolean
 
 ```javascript
 const env_key = env("BOOLEAN_KEY", (x) => x.asBoolean());
 ```
 
-## asEnum
+### asEnum
 
 ```javascript
 const env_key = env("ENUM_KEY", (x) => x.asEnum(["option1", "option2"]));
 ```
 
-## asPort
+### asPort
 
 ```javascript
 const env_key = env("INT_KEY", (x) => x.asPort());
 ```
 
-## asJson
+### asJson
 
 ```javascript
 const env_key = env("JSON_KEY", (x) => x.asJson());
 ```
 
-## asJsonArray
+### asJsonArray
 
 ```javascript
 const env_key = env("JSON_ARRAY_KEY", (x) => x.asJsonArray());
 ```
 
-## asLowerCase
+### asLowerCase
 
 ```javascript
 const env_key = env("STRING_KEY", (x) => x.asLowerCase());
 ```
 
-## asUpperCase
+### asUpperCase
 
 ```javascript
 const env_key = env("STRING_KEY", (x) => x.asUpperCase());
 ```
 
-## assert
+### assert
 
 ```javascript
 const env_key = env("STRING_KEY", (x) =>
@@ -151,7 +154,7 @@ const env_key = env("STRING_KEY", (x) =>
 );
 ```
 
-## transform
+### transform
 
 ```javascript
 const env_key = env("STRING_KEY", (x) => x.transform((v) => v.toString().toLowerCase()););
