@@ -26,7 +26,7 @@ export default class Context<V> {
   asEnum(validValues: V[]) {
     return this.assert(
       (v) => validValues.includes(v),
-      () => `The key "${this.key}" most be one of: ${validValues}`
+      () => `The key "${this.key}" must be one of: ${validValues}`
     );
   }
 
@@ -49,14 +49,14 @@ export default class Context<V> {
 
     return this.assert(
       (v) => !isNaN(int) && v.toString().indexOf(".") === -1,
-      `The key "${this.key}" most be a valid integer`
+      `The key "${this.key}" must be a valid integer`
     ).transform(() => int);
   }
 
   asIntInclusiveBetween(start: number, end: number) {
     return this.asInt().assert(
       (v) => v >= start && v <= end,
-      `The key "${this.key}" most be between ${start} and ${end}`
+      `The key "${this.key}" must be between ${start} and ${end}`
     );
   }
 
@@ -65,14 +65,14 @@ export default class Context<V> {
 
     return this.assert(
       () => !isNaN(float),
-      `The key "${this.key}" most be a valid float`
+      `The key "${this.key}" must be a valid float`
     ).transform(() => float);
   }
 
   asFloatInclusiveBetween(start: number, end: number) {
     return this.asFloat().assert(
       (v) => v >= start && v <= end,
-      `The key "${this.key}" most be between ${start} and ${end}`
+      `The key "${this.key}" must be between ${start} and ${end}`
     );
   }
 
@@ -83,7 +83,7 @@ export default class Context<V> {
       } catch (e) {
         return this.assert(
           () => false,
-          `The key "${this.key}" most be a valid JSON`
+          `The key "${this.key}" must be a valid JSON`
         );
       }
     });
@@ -92,7 +92,7 @@ export default class Context<V> {
   asJsonArray(): Context<[any]> {
     return this.asJson().assert(
       (v) => Array.isArray(v),
-      `The key "${this.key}" most be a valid JSON array`
+      `The key "${this.key}" must be a valid JSON array`
     );
   }
 
