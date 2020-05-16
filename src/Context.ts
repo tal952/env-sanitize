@@ -26,14 +26,14 @@ export default class Context<V> {
   asEnum(validValues: V[]) {
     return this.assert(
       (v) => validValues.includes(v),
-      () => `The key "${this.key}" most be one of: ${validValues}`
+      () => `The key "${this.key}" must be one of: ${validValues}`
     );
   }
 
   asRegex(regex: RegExp) {
     return this.assert(
       (v) => regex.test(v.toString()),
-      () => `The key "${this.key}" most match the regex: ${regex}`
+      () => `The key "${this.key}" must match the regex: ${regex}`
     );
   }
 
@@ -54,42 +54,42 @@ export default class Context<V> {
   asInt() {
     return this.transform((v) => parseFloat(v.toString())).assert(
       (v) => Number.isInteger(v),
-      `The key "${this.key}" most be a valid integer`
+      `The key "${this.key}" must be a valid integer`
     );
   }
 
   asFloat() {
     return this.transform((v) => parseFloat(v.toString())).assert(
       (v) => !isNaN(v),
-      `The key "${this.key}" most be a valid float`
+      `The key "${this.key}" must be a valid float`
     );
   }
 
   greater(n: number) {
     return (typeof this.value == "number" ? this : this.asFloat()).assert(
       (v) => v > n,
-      `The key "${this.key}" most be greater then ${n}`
+      `The key "${this.key}" must be greater than ${n}`
     );
   }
 
   greaterOrEqual(n: number) {
     return (typeof this.value == "number" ? this : this.asFloat()).assert(
       (v) => v >= n,
-      `The key "${this.key}" most be greater than or equal to ${n}`
+      `The key "${this.key}" must be greater than or equal to ${n}`
     );
   }
 
   less(n: number) {
     return (typeof this.value == "number" ? this : this.asFloat()).assert(
       (v) => v < n,
-      `The key "${this.key}" most be less then ${n}`
+      `The key "${this.key}" must be less than ${n}`
     );
   }
 
   lessOrEqual(n: number) {
     return (typeof this.value == "number" ? this : this.asFloat()).assert(
       (v) => v <= n,
-      `The key "${this.key}" most be less than or equal to ${n}`
+      `The key "${this.key}" must be less than or equal to ${n}`
     );
   }
 
@@ -100,7 +100,7 @@ export default class Context<V> {
       } catch (e) {
         return this.assert(
           () => false,
-          `The key "${this.key}" most be a valid JSON`
+          `The key "${this.key}" must be a valid JSON`
         );
       }
     });
@@ -109,7 +109,7 @@ export default class Context<V> {
   asJsonArray(): Context<[any]> {
     return this.asJson().assert(
       (v) => Array.isArray(v),
-      `The key "${this.key}" most be a valid JSON array`
+      `The key "${this.key}" must be a valid JSON array`
     );
   }
 
