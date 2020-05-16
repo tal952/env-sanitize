@@ -1,6 +1,7 @@
 # env-sanitize 🧹
+
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![NPM version](https://img.shields.io/npm/v/env-sanitize.svg)](https://www.npmjs.com/package/env-sanitize)   
+[![NPM version](https://img.shields.io/npm/v/env-sanitize.svg)](https://www.npmjs.com/package/env-sanitize)  
 Sanitization and verification of environment variables with typescript support.
 
 ## Installation
@@ -52,9 +53,9 @@ const env_key = env("STRING_KEY", (x) =>
 - [required](#required)
 - [with default](#with-default)
 - [asInt](#asint)
-- [asIntInclusiveBetween](#asintinclusivebetween)
 - [asFloat](#asfloat)
-- [asFloatInclusiveBetween](#asfloatinclusivebetween)
+- [greater](#greater)
+- [less](#less)
 - [asBoolean](#asboolean)
 - [asEnum](#asenum)
 - [asPort](#asport)
@@ -83,22 +84,24 @@ const env_key = env("OPTIONAL_KEY", "default");
 const env_key = env("INT_KEY", (x) => x.asInt());
 ```
 
-### asIntInclusiveBetween
-
-```javascript
-const env_key = env("INT_KEY", (x) => x.asIntInclusiveBetween(1, 5));
-```
-
 ### asFloat
 
 ```javascript
 const env_key = env("FLOAT_KEY", (x) => x.asFloat());
 ```
 
-### asFloatInclusiveBetween
+### greater
 
 ```javascript
-const env_key = env("FLOAT_KEY", (x) => x.asFloatInclusiveBetween(1.4, 9.8));
+const env_float_key = env("FLOAT_KEY", (x) => x.greater(1));
+const env_int_key = env("INT_KEY", (x) => x.asInt().greater(1));
+```
+
+### less
+
+```javascript
+const env_float_key = env("FLOAT_KEY", (x) => x.less(9));
+const env_int_key = env("INT_KEY", (x) => x.asInt().less(9));
 ```
 
 ### asBoolean

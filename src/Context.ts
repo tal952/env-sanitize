@@ -30,6 +30,13 @@ export default class Context<V> {
     );
   }
 
+  asRegex(regex: RegExp) {
+    return this.assert(
+      (v) => regex.test(v.toString()),
+      () => `The key "${this.key}" most match the regex: ${regex}`
+    );
+  }
+
   asLowerCase() {
     return this.transform((v) => v.toString().toLowerCase());
   }
@@ -45,34 +52,30 @@ export default class Context<V> {
   }
 
   asInt() {
-    const int = parseInt(this.value.toString(), 10);
-
-    return this.assert(
-      (v) => !isNaN(int) && v.toString().indexOf(".") === -1,
+    return this.transform((v) => parseFloat(v.toString())).assert(
+      (v) => Number.isInteger(v),
       `The key "${this.key}" most be a valid integer`
-    ).transform(() => int);
-  }
-
-  asIntInclusiveBetween(start: number, end: number) {
-    return this.asInt().assert(
-      (v) => v >= start && v <= end,
-      `The key "${this.key}" most be between ${start} and ${end}`
     );
   }
 
   asFloat() {
-    const float = parseFloat(this.value.toString());
-
-    return this.assert(
-      () => !isNaN(float),
+    return this.transform((v) => parseFloat(v.toString())).assert(
+      (v) => !isNaN(v),
       `The key "${this.key}" most be a valid float`
-    ).transform(() => float);
+    );
   }
 
-  asFloatInclusiveBetween(start: number, end: number) {
-    return this.asFloat().assert(
-      (v) => v >= start && v <= end,
-      `The key "${this.key}" most be between ${start} and ${end}`
+  greater(n: number) {
+    return (typeof this.value == "number" ? this : this.asFloat()).assert(
+      (v) => v > n,
+      `The key "${this.key}" most be greater then ${n}`
+    );
+  }
+
+  less(n: number) {
+    return (typeof this.value == "number" ? this : this.asFloat()).assert(
+      (v) => v < n,
+      `The key "${this.key}" most be less then ${n}`
     );
   }
 
@@ -97,6 +100,6 @@ export default class Context<V> {
   }
 
   asPort() {
-    return this.asIntInclusiveBetween(0, 65535);
+    return this.asInt().greater(0).less(65536);
   }
 }
