@@ -72,10 +72,24 @@ export default class Context<V> {
     );
   }
 
+  greaterOrEqual(n: number) {
+    return (typeof this.value == "number" ? this : this.asFloat()).assert(
+      (v) => v >= n,
+      `The key "${this.key}" most be greater than or equal to ${n}`
+    );
+  }
+
   less(n: number) {
     return (typeof this.value == "number" ? this : this.asFloat()).assert(
       (v) => v < n,
       `The key "${this.key}" most be less then ${n}`
+    );
+  }
+
+  lessOrEqual(n: number) {
+    return (typeof this.value == "number" ? this : this.asFloat()).assert(
+      (v) => v <= n,
+      `The key "${this.key}" most be less than or equal to ${n}`
     );
   }
 
@@ -100,6 +114,6 @@ export default class Context<V> {
   }
 
   asPort() {
-    return this.asInt().greater(0).less(65536);
+    return this.asInt().greaterOrEqual(0).lessOrEqual(65535);
   }
 }

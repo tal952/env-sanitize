@@ -55,9 +55,12 @@ const env_key = env("STRING_KEY", (x) =>
 - [asInt](#asint)
 - [asFloat](#asfloat)
 - [greater](#greater)
+- [greaterOrEqual](#greaterorequal)
 - [less](#less)
+- [lessOrEqual](#lessorequal)
 - [asBoolean](#asboolean)
 - [asEnum](#asenum)
+- [asRegex](#asregex)
 - [asPort](#asport)
 - [asJson](#asjson)
 - [asJsonArray](#asjsonarray)
@@ -97,11 +100,25 @@ const env_float_key = env("FLOAT_KEY", (x) => x.greater(1));
 const env_int_key = env("INT_KEY", (x) => x.asInt().greater(1));
 ```
 
+### greaterOrEqual
+
+```javascript
+const env_float_key = env("FLOAT_KEY", (x) => x.greaterOrEqual(1));
+const env_int_key = env("INT_KEY", (x) => x.asInt().greaterOrEqual(1));
+```
+
 ### less
 
 ```javascript
 const env_float_key = env("FLOAT_KEY", (x) => x.less(9));
 const env_int_key = env("INT_KEY", (x) => x.asInt().less(9));
+```
+
+### lessOrEqual
+
+```javascript
+const env_float_key = env("FLOAT_KEY", (x) => x.lessOrEqual(9));
+const env_int_key = env("INT_KEY", (x) => x.asInt().lessOrEqual(9));
 ```
 
 ### asBoolean
@@ -114,6 +131,12 @@ const env_key = env("BOOLEAN_KEY", (x) => x.asBoolean());
 
 ```javascript
 const env_key = env("ENUM_KEY", (x) => x.asEnum(["option1", "option2"]));
+```
+
+### asRegex
+
+```javascript
+const env_key = env("ONLY_NUMBERS_KEY", (x) => x.asRegex(/^[0-9]*$/g));
 ```
 
 ### asPort
